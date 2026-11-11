@@ -1,0 +1,308 @@
+@layer reset, base, theme, layout, components, utilities;
+
+@layer reset {
+  :where(html, body, main, footer, div, h1, p, a, button, span, img) {
+    box-sizing: border-box;
+  }
+
+  :where(body, h1, p) {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer theme {
+  :root {
+    color-scheme: dark;
+
+    --bg-primary: #000000;
+    --soul-color: #D4A843;
+    --accent: #d4a574;
+    --body-color: #27ae60;
+
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.76);
+    --text-muted: rgba(255, 255, 255, 0.48);
+    --border-subtle: rgba(255, 255, 255, 0.12);
+
+    --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    --font-label: "Outfit", system-ui, -apple-system, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-tamil: "Noto Sans Tamil", system-ui, sans-serif;
+
+    --scrollbar-track: #050507;
+    --scrollbar-thumb: #4a4a55;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    accent-color: var(--soul-color);
+  }
+
+  @supports not (scrollbar-color: auto) {
+    :root::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    :root::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 999px;
+    }
+
+    :root::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+  }
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--bg-primary);
+  }
+
+  body {
+    min-block-size: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: clip;
+  }
+
+  /* Quiet obsidian starfield matching naveenriaz.com */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+    background-image:
+      radial-gradient(1px 1px at 14% 20%, rgba(255, 255, 255, 0.50), transparent),
+      radial-gradient(1.5px 1.5px at 26% 76%, rgba(212, 168, 67, 0.40), transparent),
+      radial-gradient(1px 1px at 74% 18%, rgba(40, 116, 166, 0.45), transparent),
+      radial-gradient(1px 1px at 84% 66%, rgba(39, 174, 96, 0.40), transparent),
+      radial-gradient(1px 1px at 89% 86%, rgba(255, 255, 255, 0.40), transparent);
+  }
+
+  a:any-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:any-link:hover {
+    color: var(--soul-color);
+  }
+
+  :where(a:any-link, button):focus-visible {
+    outline: 2px solid var(--soul-color);
+    outline-offset: 3px;
+    border-radius: 999px;
+  }
+
+  [lang="ta"] {
+    font-family: var(--font-tamil);
+    letter-spacing: 0;
+  }
+}
+
+@layer layout {
+  .reveal-stage {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-inline: 1.5rem;
+    padding-block: 2rem 1rem;
+    gap: 1.75rem;
+  }
+
+  .site-footer {
+    position: relative;
+    z-index: 1;
+    padding-block: 1.25rem 1.75rem;
+    padding-inline: 1.25rem;
+    text-align: center;
+  }
+}
+
+@layer components {
+  .logo-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .logo-frame {
+    position: relative;
+    inline-size: min(400px, 80vw);
+    aspect-ratio: 1 / 1;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+
+  /* Blends outer studio margin seamlessly into #000000 without touching gold artwork */
+  .logo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 32px 20px #000000;
+  }
+
+  .reveal-logo {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .reveal-logo[hidden] {
+    display: none;
+  }
+
+  .mark-round {
+    inline-size: 120px;
+    block-size: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .script-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.22rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .toggle-btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    min-block-size: 30px;
+    min-inline-size: 68px;
+    padding-inline: 0.85rem;
+    padding-block: 0.3rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .toggle-btn[lang="ta"] {
+    font-family: var(--font-tamil);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
+  }
+
+  .toggle-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .toggle-btn[aria-pressed="true"] {
+    background: rgba(212, 168, 67, 0.16);
+    color: var(--soul-color);
+  }
+
+  .launch-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .launch-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-inline: 1.15rem;
+    padding-block: 0.45rem;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 168, 67, 0.34);
+    background: rgba(212, 168, 67, 0.06);
+    font-family: var(--font-label);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--soul-color);
+  }
+
+  .status-dot {
+    inline-size: 7px;
+    block-size: 7px;
+    border-radius: 50%;
+    background-color: var(--soul-color);
+    box-shadow: 0 0 10px var(--soul-color);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+
+  .launch-triad {
+    font-family: var(--font-label);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    font-family: var(--font-label);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 28px;
+    padding-inline: 0.25rem;
+  }
+}
+
+@layer utilities {
+  @media (pointer: coarse) {
+    .toggle-btn,
+    .footer-links a {
+      min-block-size: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-dot,
+    .toggle-btn,
+    a:any-link {
+      animation: none;
+      transition: none;
+    }
+  }
+}

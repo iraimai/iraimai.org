@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>IRAIMAI | Launching Soon</title>
+  <meta name="description" content="IRAIMAI (Sovereignty). Launching Soon.">
+  <link rel="canonical" href="https://iraimai.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iraimai.org/">
+  <meta property="og:title" content="IRAIMAI | Launching Soon">
+  <meta property="og:description" content="Power · Wisdom · Sovereignty. Launching Soon.">
+  <meta property="og:image" content="https://iraimai.org/assets/iraimai-logo-en.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Sans+Tamil:wght@500;600&family=Outfit:wght@500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="reveal-stage">
+    <div class="logo-showcase">
+      <div class="logo-frame">
+        <img
+          id="logo-en"
+          src="assets/iraimai-logo-en.jpg"
+          alt="IRAIMAI Sovereignty gold emblem"
+          width="420"
+          height="420"
+          fetchpriority="high"
+          class="reveal-logo"
+        >
+        <img
+          id="logo-ta"
+          src="assets/iraimai-logo-ta.jpg"
+          alt="Iraimai Sovereignty gold emblem in Tamil script"
+          width="420"
+          height="420"
+          fetchpriority="low"
+          class="reveal-logo"
+          hidden
+        >
+      </div>
+
+      <div class="script-toggle" role="group" aria-label="Logo script">
+        <button type="button" class="toggle-btn" data-target="en" aria-pressed="true">
+          IRAIMAI
+        </button>
+        <button type="button" class="toggle-btn" data-target="ta" aria-pressed="false" lang="ta">
+          இறைமை
+        </button>
+      </div>
+    </div>
+
+    <div class="launch-caption">
+      <h1 class="launch-heading">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Launching Soon</span>
+      </h1>
+      <p class="launch-triad">Power · Wisdom · Sovereignty</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-links">
+      <a href="https://naveenriaz.com">naveenriaz.com</a>
+      <span aria-hidden="true">·</span>
+      <span>&copy; 2026 IRAIMAI</span>
+    </p>
+  </footer>
+
+  <script>
+    const btnEn = document.querySelector('[data-target="en"]');
+    const btnTa = document.querySelector('[data-target="ta"]');
+    const imgEn = document.getElementById('logo-en');
+    const imgTa = document.getElementById('logo-ta');
+
+    function setLogo(lang) {
+      const isEn = lang === 'en';
+      imgEn.hidden = !isEn;
+      imgTa.hidden = isEn;
+      btnEn.setAttribute('aria-pressed', String(isEn));
+      btnTa.setAttribute('aria-pressed', String(!isEn));
+    }
+
+    btnEn.addEventListener('click', () => setLogo('en'));
+    btnTa.addEventListener('click', () => setLogo('ta'));
+  </script>
+</body>
+</html>
