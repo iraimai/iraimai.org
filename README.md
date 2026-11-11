@@ -1,3 +1,5 @@
-# iraimai.org (GitHub Pages Launch Site)
+# IRAIMAI
 
-Minimal, obsidian-dark static launch site for **https://iraimai.org**, designed as a direct sister surface to **https://naveenriaz.com**.
+**Power · Wisdom · Sovereignty**
+
+Official website for [iraimai.org](https://iraimai.org). Launching soon.

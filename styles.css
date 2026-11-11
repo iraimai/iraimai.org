@@ -72,7 +72,7 @@
     overflow-x: clip;
   }
 
-  /* Quiet obsidian starfield matching naveenriaz.com */
+  /* Quiet obsidian starfield */
   body::after {
     content: "";
     position: fixed;
